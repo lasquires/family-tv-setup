@@ -36,7 +36,7 @@ function render(){
  const c=commands(state);
  if(state.mode==='check'){
   if(step===1){$('title').textContent='Download your setup tools.';$('description').textContent='One small ZIP for Windows, Mac and Linux. No GitHub account required.';
-   const download=element('a','Download Family TV setup','download');download.href='./downloads/family-tv-setup.zip';download.download='family-tv-setup.zip';$('content').append(download);
+   const download=element('a','Download Family TV setup','download');download.href='./family-tv-setup.zip';download.download='family-tv-setup.zip';$('content').append(download);
    text('Open the download and extract it. Inside, open the family-tv-setup folder.','success');
    text(state.os==='windows'?'Right-click inside the folder and choose Open in Terminal. Use PowerShell.':'Open Terminal in the extracted family-tv-setup folder.','hint');
    block('Check the tools on your computer',c.prerequisites);text('Both commands should show a version. Missing Python? Install Python 3 from python.org. Missing SSH? Enable the OpenSSH client on Windows; it is normally available on Mac.','hint');
@@ -47,7 +47,7 @@ function render(){
  }
  if(state.mode==='guided'&&step===1){
    $('title').textContent='Unzip. Open. You’re ready to begin.';$('description').textContent='Download the installer and keep your private setup kit on your computer.';
-   const download=element('a','Download Family TV setup','download');download.href='./downloads/family-tv-setup.zip';download.download='family-tv-setup.zip';$('content').append(download);
+   const download=element('a','Download Family TV setup','download');download.href='./family-tv-setup.zip';download.download='family-tv-setup.zip';$('content').append(download);
    text('Extract the ZIP into a new folder. Open the family-tv-setup folder inside it. No GitHub account or Git commands are needed for this package.','success');
    text(state.os==='windows'?'In that folder, right-click and choose Open in Terminal, then use PowerShell. You can also ask your operator to run installer/Start-Setup.ps1.':'Open Terminal in that folder. The installer/Start-Setup.command launcher can also guide you when run with bash.','hint');
    block('Check your computer’s tools',c.prerequisites);text('Both should show a version. If Python or SSH is missing, ask your setup operator to install it before continuing.','warning');return;
@@ -69,3 +69,4 @@ function render(){
 $('back').onclick=()=>{if(step>0){step--;render();}};
 $('next').onclick=()=>{try{validate(state);if(step===4){const c=commands(state);const data='Family TV setup checklist\n\nNo secrets are included, but these commands contain your local file paths.\n\n'+Object.entries(c).filter(([k])=>k!=='base'||state.base).map(([k,v])=>k.toUpperCase()+'\n'+v).join('\n\n');const url=URL.createObjectURL(new Blob([data],{type:'text/plain'}));const a=element('a');a.href=url;a.download='family-tv-setup.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);return;}step++;render();$('title').scrollIntoView({behavior:'smooth',block:'center'});}catch(e){$('error').textContent=e.message;}};
 render();
+
