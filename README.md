@@ -1,7 +1,15 @@
 # Family TV setup
 
-Public guided setup website and credential-free installer download.
+Open https://lasquires.github.io/family-tv-setup/ on your laptop. Download and extract the ZIP, then run `installer/Start-Setup.cmd` on Windows or `bash installer/Start-Setup.command` on Mac/Linux.
 
-Start at https://lasquires.github.io/family-tv-setup/
+The local wizard creates a separate home or opens a home you explicitly select, discovers TVs, identifies LG/Samsung models, guides the supported root setup, installs household controls and direct TV-to-cloud sync, and waits for a confirmed dashboard command before showing the private phone link and QR code. Windows prepares a verified portable Python runtime; Mac/Linux require Python 3. OpenSSH is used for LG installation.
 
-Early-access pilot: the first connection check is read-only. Full installation needs a compatible LG TV, authorized root SSH access and an operator-provisioned private household. There are no household credentials in this repository.
+LG uses the pinned no-USB SlopBro route. Samsung uses a hash-verified Apps2Samsung CLI download, personal Samsung signing, TV Developer Mode prompts and Vetro root/pairing checks. Firmware compatibility varies. No universal root guarantee is made.
+
+All enrolled TVs for the selected household appear together at https://family-tv-households.adoredhotel2.chatgpt.site/. A private parent credential is required. The TV agents connect outward over HTTPS, so no router configuration is needed and the laptop can close after setup. TVs must be online for commands; remote wake is not included. IP changes do not change cloud device identity.
+
+This is a test release. Automated isolation, installation safeguards, update rollback, hosted enrollment/acknowledgement and portable-runtime checks pass. Factory-default LG and Samsung hardware acceptance and cold-boot recovery still need verification. Existing legacy Family TV installations are not silently imported or transferred. This dashboard currently exposes basic app protection, PIN pauses and viewing reports; it does not yet duplicate every feature of the original private dashboard.
+
+The ZIP includes the implementation source, platform adapters, pinned upstream sources and license notices. It contains no household credentials, SSH keys, Samsung certificates or user TV addresses. Keep the `.family-tv` folder created in your user profile as a private recovery backup. `family-tv-setup.sha256` records the package digest.
+
+The original `lasquires/family-tv` repository and original household deployment are separate. Public release files are explicit allowlisted files; never upload local credentials or setup state.
